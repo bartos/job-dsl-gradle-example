@@ -1,0 +1,4 @@
+timestamp = build( "$buildJobName", Branch: params["Branch"] ).environment.get("BUILD_TIMESTAMP")
+out.println timestamp
+// in the stuff directory
+
