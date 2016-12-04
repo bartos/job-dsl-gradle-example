@@ -8,6 +8,7 @@ import static com.ds.dsl.ConfigProvider.getConfig
  */
 getConfig(binding.variables)
 
+println "localPath : $localPath"
 
 buildFlowJob("${appName}_Flow") {
     description("Simple Flow Example")
