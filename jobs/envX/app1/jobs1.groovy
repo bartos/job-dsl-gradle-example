@@ -67,10 +67,10 @@ def getAppName() {
 }
 
 def getCurrentPathFromBindings() {
-    this.binding.variables.each { k, v -> println "$k: $v" }
+    //this.binding.variables.each { k, v -> println "$k: $v" }
     return Paths.get(binding.variables.__FILE__ as String).parent
 }
 
 def getLocalPath(){
-    "${currentPathFromBindings.toString().minus("${WORKSPACE}${File.SEPARATOR}".toString() as String)  }".toString()
+    "${(currentPathFromBindings.toString() - "${WORKSPACE}${File.separator}".toString() as String)}".toString()
 }
