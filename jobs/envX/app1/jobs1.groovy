@@ -72,5 +72,5 @@ def getCurrentPathFromBindings() {
 }
 
 def getLocalPath(){
-    "${currentPathFromBindings.toString().minus("${WORKSPACE}${File.SEPARATOR}".toString() as String)  }".toString()
+    return "${currentPathFromBindings.toString().minus("${WORKSPACE}${File.SEPARATOR}".toString() as String)  }".toString()
 }
