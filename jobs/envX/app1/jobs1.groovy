@@ -9,7 +9,7 @@ import static com.ds.dsl.ConfigProvider.getConfig
 getConfig(binding.variables)
 
 
-buildFlowJob("${appName}_Flow") {
+buildFlowJob("${scriptName}_Flow") {
     description("Simple Flow Example")
     jdk("$jdk")
     properties {
@@ -62,7 +62,7 @@ buildJob.configure { project ->
 //----------------------------------------------------------------
 // methods below should also go to external dependency
 
-def getAppName() {
+/*def getAppName() {
     getCurrentPathFromBindings().last().toString()
 }
 
@@ -74,3 +74,4 @@ def getCurrentPathFromBindings() {
 def getLocalPath(){
     "${(currentPathFromBindings.toString() - "${WORKSPACE}${File.separator}".toString() as String)}".toString()
 }
+*/
