@@ -8,7 +8,6 @@ import static com.ds.dsl.ConfigProvider.getConfig
  */
 getConfig(binding.variables)
 
-println "localPath : $localPath"
 
 buildFlowJob("${appName}_Flow") {
     description("Simple Flow Example")
@@ -68,10 +67,10 @@ def getAppName() {
 }
 
 def getCurrentPathFromBindings() {
-    this.binding.variables.each { k, v -> println "$k: $v" }
+    //this.binding.variables.each { k, v -> println "$k: $v" }
     return Paths.get(binding.variables.__FILE__ as String).parent
 }
 
 def getLocalPath(){
-    return "${currentPathFromBindings.toString().minus("${WORKSPACE}${File.separator}".toString() as String)  }".toString()
+    "${(currentPathFromBindings.toString() - "${WORKSPACE}${File.separator}".toString() as String)}".toString()
 }
