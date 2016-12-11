@@ -23,7 +23,7 @@ buildFlowJob("${scriptName}_Flow") {
 }
 
 
-def buildJob = job("${criptName}_Build") {
+def buildJob = job("${scriptName}_Build") {
     description("a buildJob")
     jdk("$jdk")
 
