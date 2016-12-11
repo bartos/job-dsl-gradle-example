@@ -26,7 +26,26 @@ class ConfigProvider {
         variableMap << readPropertiesFile(applicationPropertiesFilePath.toString())
         variableMap << readPropertiesFile(scriptPropertiesFilePath.toString())
 
+        variableMap<< getCallingScriptContextProperties(callingScript)
+
     }
+
+    /**
+     * serving script path related properties like name, it's parent dir etc
+     * @param callingScript
+     * @return
+     */
+    private static  def getCallingScriptContextProperties(String callingScript){
+        def contextProps=new HashMap()
+        def lFile=new File(callingScript)
+        def scriptName=lFile.name.take(lFile.name.lastIndexOf('.'))
+        def localPath=Paths.get(callingScript).parent.toString()
+        contextProps.put("scriptName",scriptName)
+        contextProps.put("localPath",localPath)
+        return  contextProps
+    }
+
+
 
     static def readPropertiesFile(String filePath) {
         def propertiesFile = new File(filePath)
