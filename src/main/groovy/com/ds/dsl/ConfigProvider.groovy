@@ -43,11 +43,24 @@ class ConfigProvider {
      * Traverse directories up, until app.properties found
      */
     private static def getApplicationPropertiesFilePath(String callingScript){
-        def scriptPath=Paths.get(callingScript).parent.resolve("app.properties")
-        println "scriptPath_app_properties: $scriptPath"
 
+        def parentPath = Paths.get(callingScript).parent
+        def appPropertiesFile = parentPath.resolve(APP_PROPERTIES_FILE_NAME).toFile()
 
-        return  scriptPath
+        if (!appPropertiesFile.exists()) {
+            //go up while reach workspace main directory
+            while (parentPath.toString() != WORKSPACE_PATH) {
+                parentPath = parentPath.parent
+                appPropertiesFile = parentPath.resolve(APP_PROPERTIES_FILE_NAME).toFile()
+                if (appPropertiesFile.exists()) {
+                    //got it
+                    break
+                }
+
+            }
+        }
+
+        return appPropertiesFile.absolutePath
     }
 
     /**
