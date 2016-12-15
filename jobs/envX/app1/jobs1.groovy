@@ -56,9 +56,6 @@ buildJob.configure { project ->
 }
 
 
-binding.variables.each {k,v->
-    println "$k : $v"
-}
 
 
 //----------------------------------------------------------------
