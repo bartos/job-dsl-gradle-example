@@ -5,7 +5,6 @@ import static com.ds.dsl.ConfigProvider.getConfig
 
 getConfig(binding.variables)
 
-//TODO: config should reach env & app props
 job("$jobXName"){
     description("""This is job description: $description
 and this comes from app.properties: $applicationDescription
