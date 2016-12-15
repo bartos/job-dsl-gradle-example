@@ -26,7 +26,7 @@ class ConfigProvider {
 
         def scriptPropertiesFilePath = Paths.get(callingScript).parent.resolve(callingScriptPropertiesFileName)
         def applicationPropertiesFilePath = getApplicationPropertiesFilePath(callingScript)
-        def environmentPropertiesFilePath = Paths.get(applicationPropertiesFilePath).parent.resolve(ENV_PROPERTIES_FILE_NAME)
+        def environmentPropertiesFilePath = Paths.get(applicationPropertiesFilePath).parent.parent.resolve(ENV_PROPERTIES_FILE_NAME)
 
         variableMap.out.println "scriptPropertiesFilePath: $callingScriptPropertiesFileName"
         variableMap.out.println "applicationPropertiesFilePath: $applicationPropertiesFilePath"
