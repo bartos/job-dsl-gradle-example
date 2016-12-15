@@ -25,13 +25,11 @@ class ConfigProvider {
         variableMap.out.println "callingScriptPropertiesFileName: $callingScriptPropertiesFileName"
 
         def scriptPropertiesFilePath = Paths.get(callingScript).parent.resolve(callingScriptPropertiesFileName)
-
-//        def applicationPropertiesFilePath =
-//                Paths.get(callingScript).parent.resolve("app.properties")
-        def environmentPropertiesFilePath = Paths.get(callingScript).parent.parent.resolve('env.properties')
+        def applicationPropertiesFilePath = getApplicationPropertiesFilePath(callingScript)
+        def environmentPropertiesFilePath = Paths.get(applicationPropertiesFilePath).parent.resolve('env.properties')
 
         variableMap << readPropertiesFile(environmentPropertiesFilePath.toString())
-        variableMap << readPropertiesFile(getApplicationPropertiesFilePath(callingScript).toString())
+        variableMap << readPropertiesFile(applicationPropertiesFilePath)
         variableMap << readPropertiesFile(scriptPropertiesFilePath.toString())
 
         variableMap<< getCallingScriptContextProperties(callingScript)
