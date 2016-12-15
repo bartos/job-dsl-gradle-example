@@ -7,12 +7,18 @@ import java.nio.file.Paths
  */
 class ConfigProvider {
 
+    private static final String APP_PROPERTIES_FILE_NAME="app.properties"
+    private static final String ENV_PROPERTIES_FILE_NAME="env.properties"
+    private static String WORKSPACE_PATH=null
+
+
     /**
      *
      * @param variableMap LinkedHashMap
      * @return
      */
     def static getConfig(Map variableMap) {
+        WORKSPACE_PATH=variableMap.WORKSPACE as String
         def callingScript = variableMap.__FILE__ as String
         def callingScriptPropertiesFileName = callingScript.replaceAll('(\\.groovy)$', '.properties')
 
@@ -38,6 +44,9 @@ class ConfigProvider {
      */
     private static def getApplicationPropertiesFilePath(String callingScript){
         def scriptPath=Paths.get(callingScript).parent.resolve("app.properties")
+        println "scriptPath_app_properties: $scriptPath"
+
+
         return  scriptPath
     }
 
