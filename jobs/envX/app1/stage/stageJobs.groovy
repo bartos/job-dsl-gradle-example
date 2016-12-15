@@ -7,6 +7,8 @@ getConfig(binding.variables)
 
 //TODO: config should reach env & app props
 job("$jobXName"){
-    description("$description")
+    description("""This is job description: $description
+and this comes from app.properties: $applicationDescription""")
+
 }
 
