@@ -22,11 +22,15 @@ class ConfigProvider {
         def callingScript = variableMap.__FILE__ as String
         def callingScriptPropertiesFileName = callingScript.replaceAll('(\\.groovy)$', '.properties')
 
-        variableMap.out.println "callingScriptPropertiesFileName: $callingScriptPropertiesFileName"
+
 
         def scriptPropertiesFilePath = Paths.get(callingScript).parent.resolve(callingScriptPropertiesFileName)
         def applicationPropertiesFilePath = getApplicationPropertiesFilePath(callingScript)
         def environmentPropertiesFilePath = Paths.get(applicationPropertiesFilePath).parent.resolve(ENV_PROPERTIES_FILE_NAME)
+
+        variableMap.out.println "scriptPropertiesFilePath: $callingScriptPropertiesFileName"
+        variableMap.out.println "applicationPropertiesFilePath: $applicationPropertiesFilePath"
+        variableMap.out.println "environmentPropertiesFilePath: $environmentPropertiesFilePath"
 
         variableMap << readPropertiesFile(environmentPropertiesFilePath.toString())
         variableMap << readPropertiesFile(applicationPropertiesFilePath)
